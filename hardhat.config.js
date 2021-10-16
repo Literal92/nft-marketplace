@@ -1,6 +1,8 @@
 require("@nomiclabs/hardhat-waffle");
 
-const projoctId = "dc319fb8db054f96ae949269b77c9d09";
+const fs = require("fs")
+const privateKey = fs.readFileSync(".secret").toString()
+const projectId = "dc319fb8db054f96ae949269b77c9d09"
 
 module.exports = {
   networks: {
@@ -9,10 +11,11 @@ module.exports = {
     },
     mumbai: {
       url: `https://polygon-mainnet.infura.io/v3/${projectId}`,
-      accounts: []
+      accounts: [privateKey]
     },
     mainnet: {
-      url: `https://polygon-mainnet.infura.io/v3/${projectId}`
+      url: `https://polygon-mainnet.infura.io/v3/${projectId}`,
+      accounts: [privateKey]
     }
   },
   solidity: "0.8.4",
